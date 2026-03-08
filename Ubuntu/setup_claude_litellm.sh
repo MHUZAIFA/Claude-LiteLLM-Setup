@@ -1,9 +1,35 @@
 #!/usr/bin/env bash
 
+################################################################################
+# Claude Code + LiteLLM Interactive Setup Script
+#
+# Author: Mohammed Huzaifa
+# Email: mhuzaifa.career@outlook.com
+# Version: 1.0.0
+# Date: 2026-03-08
+#
+# Purpose:
+#   Interactive Ubuntu setup script for installing Claude Code,
+#   configuring LiteLLM URL and API key, and optionally setting
+#   Claude Opus 4.6 as the default model for a project.
+#
+# Changelog:
+#   1.0.0 - Initial version with full setup workflow:
+#       - Checks if user has LiteLLM URL & API key
+#       - Verifies API key
+#       - Installs dependencies
+#       - Installs Claude Code
+#       - Sets environment variables
+#       - Optionally configures Claude Opus 4.6 for a project
+################################################################################
+
+VERSION="1.0.0"
+
 set -e
 
 echo "========================================="
-echo "Claude Code + LiteLLM Interactive Setup"
+echo "Claude Code + LiteLLM Setup"
+echo "Version: $VERSION"
 echo "========================================="
 echo
 
