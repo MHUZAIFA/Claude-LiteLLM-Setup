@@ -5,7 +5,7 @@ This guide explains how to set up Claude Code to work with LiteLLM and optionall
 ## Prerequisites
 
 - Ubuntu 22.04 / 24.04 or similar Linux
-- Access to LiteLLM 
+- Access to LiteLLM
 - Access to a LiteLLM API key
 - `git`, `python3`, `pip`, `curl`
 

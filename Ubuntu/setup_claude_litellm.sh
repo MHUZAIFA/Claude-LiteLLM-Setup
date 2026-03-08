@@ -3,57 +3,39 @@
 set -e
 
 echo "========================================="
-echo "Claude Code + LiteLLM Setup"
+echo "Claude Code + LiteLLM Interactive Setup"
 echo "========================================="
 echo
 
 # ---------------------------
-# STEP 0 - Ask for LiteLLM URL
+# STEP 0 - Ask if user has LiteLLM URL and API key
 # ---------------------------
 
-read -p "Enter your LiteLLM URL: " BASE_URL
+read -p "Do you already have a LiteLLM URL and API key? (y/n): " HAS_LITELLM
 
+if [[ "$HAS_LITELLM" != "y" ]]; then
+    echo
+    echo "You need a LiteLLM account and API key to proceed."
+    echo "Please follow these steps:"
+    echo "1. Create/Request a LiteLLM account."
+    echo "2. Login to your LiteLLM portal."
+    echo "3. Generate an API key."
+    echo "4. Run this setup script again."
+    exit 0
+fi
+
+# ---------------------------
+# STEP 1 - Ask for LiteLLM URL and API key
+# ---------------------------
+echo
+read -p "Enter your LiteLLM URL: " BASE_URL
 if [[ -z "$BASE_URL" ]]; then
     echo "LiteLLM URL is required. Exiting."
     exit 1
 fi
 
-echo "Using LiteLLM URL: $BASE_URL"
 echo
-
-# ---------------------------
-# STEP 1 - Ensure API KEY
-# ---------------------------
-
-read -p "Do you have a LiteLLM API key? (y/n): " HAS_KEY
-
-if [[ "$HAS_KEY" != "y" ]]; then
-    echo
-    read -p "Do you already have a LiteLLM account? (y/n): " HAS_ACCOUNT
-
-    if [[ "$HAS_ACCOUNT" == "y" ]]; then
-        echo
-        echo "Please generate an API key from:"
-        echo "$BASE_URL"
-        echo
-        echo "After generating the key, run this setup again."
-        exit 0
-    else
-        echo
-        echo "You need a LiteLLM account."
-        echo
-        echo "Please contact DevOps to request access."
-        echo
-        echo "After you receive access:"
-        echo "1. Login to $BASE_URL"
-        echo "2. Generate an API key"
-        echo "3. Run this setup script again"
-        exit 0
-    fi
-fi
-
-echo
-read -s -p "Paste your LiteLLM API key: " LITELLM_KEY
+read -s -p "Enter your LiteLLM API key: " LITELLM_KEY
 echo
 
 # ---------------------------
@@ -101,7 +83,7 @@ echo "Claude version:"
 claude --version
 
 # ---------------------------
-# STEP 5 - Configure environment
+# STEP 5 - Configure environment variables
 # ---------------------------
 
 echo
